@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" placeholder="enter any fruit name" class="get-todo">
+<button onclick="getProducts()">submit</button>
+<p class="result"></p>
+<script>
+
+  const products = []
+  let result = {}
+
+
+  function addToHTML(){
+    let accumulatorP = ''
+
+    for (let i = 0; i< products.length; i++){
+
+      const todo = products[i]
+
+      const html = `<p>${todo}</p>`
+      accumulatorP += html
+    }
+    document.querySelector('.result').innerHTML=accumulatorP
+
+    for(let product = 0 ; product<products.length; product++){
+      const word = products[product]
+
+      if(!result[word]){
+        result[word]=1
+      }else{
+        result[word]++
+      }
+    }
+    console.log(result)
+
+
+  }
+
+  function getProducts() {
+    const input = document.querySelector(".get-todo");
+    const btn = document.querySelector("button");
+    const name = input.value;
+    products.push(name)
+    input.value = "";
+    addToHTML()
+
+  }
+</script>
+</body>
+</html>
